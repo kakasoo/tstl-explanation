@@ -1,5 +1,5 @@
 /**
- * src/internal/partial/IClear.ts
+ * src/internal/container/partial/IClear.ts
  */
 export interface IClear {
     /**
