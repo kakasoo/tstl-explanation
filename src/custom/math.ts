@@ -42,13 +42,16 @@ export type GaussSum<
 
 export type ArrayToUnion<T extends any[]> = T[number];
 
-export type NNTuple<
-    N1 extends number,
-    N2 extends number,
-    P extends any[] = []
-> = Sub<N1, 1> extends never
+export type NNTuple<N1 extends number, N2 extends number> = Sub<
+    N1,
+    N2
+> extends never
+    ? Sub<N1, 1> extends never
+        ? []
+        : [...NNTuple<Sub<N1, 1>, N2>, ...NTuple<N2>]
+    : Sub<N2, 1> extends never
     ? []
-    : [...NNTuple<Sub<N1, 1>, N2, [...P, ...NTuple<N2>]>, ...NTuple<N2>];
+    : [...NNTuple<Sub<N2, 1>, N1>, ...NTuple<N1>];
 
 export type Multiply<T1 extends number, T2 extends number> = Length<
     NNTuple<T1, T2>
