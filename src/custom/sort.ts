@@ -9,13 +9,14 @@ export type Compare<N1 extends number, N2 extends number> = N1 extends N2
 
 export type BubbleSort<
     T extends any[],
-    L extends number = Length<T>
+    L extends number = Length<T>,
+    ASC extends boolean = false
 > = L extends 1
     ? T
     : T extends [infer F, infer S, ...infer Rest]
     ? BubbleSort<
           [
-              ...(Compare<NToNumber<F>, NToNumber<S>> extends true
+              ...(Compare<NToNumber<F>, NToNumber<S>> extends ASC
                   ? [F, ...BubbleSort<[S, ...Rest], Sub<L, 1>>]
                   : [S, ...BubbleSort<[F, ...Rest], Sub<L, 1>>])
           ],
