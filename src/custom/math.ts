@@ -1,4 +1,11 @@
-export type Length<T extends any[]> = T["length"];
+import {
+    ArrayToUnion,
+    Length,
+    NNTuple,
+    NToNumber,
+    NTuple,
+    Push,
+} from "./utility";
 
 export type Sub<A extends number, B extends number> = NTuple<A> extends [
     ...infer U,
@@ -7,26 +14,9 @@ export type Sub<A extends number, B extends number> = NTuple<A> extends [
     ? Length<U>
     : never;
 
-export type Push<T extends any[], V> = [...T, V];
-
-export type NTuple<
-    N extends number,
-    T extends any[] = []
-> = T["length"] extends N ? T : NTuple<N, Push<T, any>>;
-
-type Add<N1 extends number, N2 extends number> = Length<
+export type Add<N1 extends number, N2 extends number> = Length<
     [...NTuple<N1>, ...NTuple<N2>]
 >;
-
-/**
- * 타입 파라미터 N에 따라 AddOne<N>의 결과가 달라지기 때문에 이와 같은 타입은 타입 파라미터에 할당될 수 없다.
- * 따라서 AddOne<N>을 타입 파라미터로 주기 전에 타입을 다시 number로 바꿔주는 유틸리티성 타입이 필요하다.
- *
- * export type LessThanEqual<N extends number, T extends any[] = []> = LessThan<<AddOne<N>>;
- */
-export type NToNumber<N> = N extends number ? N : never;
-
-export type NToNumberTuple<N> = N extends number[] ? N : never;
 
 export type LessThan<
     N extends number,
@@ -41,19 +31,6 @@ export type GaussSum<
     N1 extends number,
     K = ArrayToUnion<LessThanEqual<N1>>
 > = K extends number ? NTuple<K> : never;
-
-export type ArrayToUnion<T extends any[]> = T[number];
-
-export type NNTuple<N1 extends number, N2 extends number> = Sub<
-    N1,
-    N2
-> extends never
-    ? Sub<N1, 1> extends never
-        ? []
-        : [...NNTuple<Sub<N1, 1>, N2>, ...NTuple<N2>]
-    : Sub<N2, 1> extends never
-    ? []
-    : [...NNTuple<Sub<N2, 1>, N1>, ...NTuple<N1>];
 
 export type Multiply<T1 extends number, T2 extends number> = Length<
     NNTuple<T1, T2>

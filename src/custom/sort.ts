@@ -1,4 +1,5 @@
-import { Length, NToNumber, NToNumberTuple, Sub } from "./math";
+import { Sub } from "./math";
+import { Length, NToNumber } from "./utility";
 
 export type Compare<N1 extends number, N2 extends number> = N1 extends N2
     ? true
@@ -22,7 +23,7 @@ export type BubbleSort<
       >
     : never;
 
-export type MergeSort<
-    T extends any[],
-    L extends number = Length<T>
-> = L extends 1 ? T : T;
+// export type MergeSort<
+//     T extends any[],
+//     L extends number = Length<T>
+// > = L extends 1 ? T : T;

@@ -1,5 +1,9 @@
-import { Length, Sub } from "./math";
+import { Sub } from "./math";
+import { Length } from "./utility";
 
+/**
+ * PartitionByTwo<[1,2,3,4,5,6,7,8]> // [[1,2],[3,4],[5,6],[7,8]]
+ */
 export type PartitionByTwo<
     T extends any[],
     L extends number = Length<T>
