@@ -21,3 +21,8 @@ export type BubbleSort<
           Sub<L, 1>
       >
     : never;
+
+export type MergeSort<
+    T extends any[],
+    L extends number = Length<T>
+> = L extends 1 ? T : T;
