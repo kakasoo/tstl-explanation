@@ -40,13 +40,7 @@ export type GaussSum<
     K = ArrayToUnion<LessThanEqual<N1>>
 > = K extends number ? NTuple<K> : never;
 
-export type c = GaussSum<5>["length"];
-
-export type d = LessThanEqual<5>;
-
 export type ArrayToUnion<T extends any[]> = T[number];
-
-export type b = ArrayToUnion<LessThan<2>>;
 
 export type NNTuple<
     N1 extends number,
@@ -56,10 +50,19 @@ export type NNTuple<
     ? []
     : [...NNTuple<Sub<N1, 1>, N2, [...P, ...NTuple<N2>]>, ...NTuple<N2>];
 
-export type divide<
+export type Multiply<T1 extends number, T2 extends number> = Length<
+    NNTuple<T1, T2>
+>;
+
+export type Divide<
     T extends number,
     N extends number,
     Answer extends number = 0
 > = NTuple<T> extends [...NTuple<N>, ...infer Rest]
-    ? divide<Length<Rest>, N, NToNumber<Add<Answer, 1>>>
+    ? Divide<Length<Rest>, N, NToNumber<Add<Answer, 1>>>
     : Answer;
+
+export type Remainder<T extends number, N extends number> = Sub<
+    T,
+    NToNumber<Multiply<N, Divide<T, N>>>
+>;
