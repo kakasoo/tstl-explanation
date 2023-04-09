@@ -55,3 +55,11 @@ export type NNTuple<
 > = Sub<N1, 1> extends never
     ? []
     : [...NNTuple<Sub<N1, 1>, N2, [...P, ...NTuple<N2>]>, ...NTuple<N2>];
+
+export type divide<
+    T extends number,
+    N extends number,
+    Answer extends number = 0
+> = NTuple<T> extends [...NTuple<N>, ...infer Rest]
+    ? divide<Length<Rest>, N, NToNumber<Add<Answer, 1>>>
+    : Answer;
