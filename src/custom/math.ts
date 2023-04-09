@@ -26,6 +26,8 @@ type Add<N1 extends number, N2 extends number> = Length<
  */
 export type NToNumber<N> = N extends number ? N : never;
 
+export type NToNumberTuple<N> = N extends number[] ? N : never;
+
 export type LessThan<
     N extends number,
     T extends any[] = []

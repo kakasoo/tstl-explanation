@@ -20,6 +20,7 @@ export class Repeater<T> implements Readonly<IForwardIterator<T, Repeater<T>>> {
         ++this.index_;
         return this;
     }
+
     equals(obj: Repeater<T>): boolean {
         return this.index() === obj.index();
     }
