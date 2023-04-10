@@ -3,6 +3,7 @@ import { Sub } from "./math";
 export type Length<T extends any[]> = T["length"];
 
 export type ToString<T> = T extends string ? string : never;
+export type ToStringTuple<T> = T extends string[] ? string : never;
 
 /**
  * 타입 파라미터 N에 따라 AddOne<N>의 결과가 달라지기 때문에 이와 같은 타입은 타입 파라미터에 할당될 수 없다.
