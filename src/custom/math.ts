@@ -48,3 +48,9 @@ export type Remainder<T extends number, N extends number> = Sub<
     T,
     NToNumber<Multiply<N, Divide<T, N>>>
 >;
+
+/**
+ * 수의 절대값을 추론하는 타입
+ */
+export type Absolute<T extends number | string | bigint> =
+    `${T}` extends `-${infer R}` ? R : `${T}`;
