@@ -2,7 +2,7 @@ import { IForwardIterator } from "../iterator/IForwardIterator";
 
 export interface IForwardContainer<
     T,
-    Iterator extends IForwardIterator<T, Iterator>
+    Iterator extends IForwardIterator<T, Iterator> = IForwardIterator<T, any>
 > {
     /**
      * @returns Iterator to the first element.
