@@ -52,3 +52,18 @@ export type Shift<T extends any[]> = T extends [infer F, ...infer Rest]
  * Unshift<[1, 2, 3], 4> // [4,1,2,3]
  */
 export type Unshift<T extends any[], V> = [V, ...T];
+
+/**
+ * 현재 튜플 형태에 새로운 타입 하나를 추가하는 타입
+ *
+ * Push<[], any> // [any]
+ * Push<[], 1> // [1]
+ */
+export type Push<T extends any[], V> = [...T, V];
+
+/**
+ * Pop<[1,2,3]> // [1,2]
+ */
+export type Pop<T extends any[]> = T extends [...infer Rest, infer Last]
+    ? Rest
+    : [];

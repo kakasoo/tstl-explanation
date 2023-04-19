@@ -1,4 +1,5 @@
 import { Sub } from "./math";
+import { Push } from "./tuple";
 
 export type Length<T extends any[]> = T["length"];
 
@@ -28,14 +29,6 @@ export type NToNumberTuple<N> = N extends number[] ? N : never;
 export type Split<T extends string> = T extends `${infer F}${infer Rest}`
     ? [F, ...Split<Rest>]
     : [];
-
-/**
- * 현재 튜플 형태에 새로운 타입 하나를 추가하는 타입
- *
- * Push<[], any> // [any]
- * Push<[], 1> // [1]
- */
-export type Push<T extends any[], V> = [...T, V];
 
 /**
  * N 만큼의 크기를 반환하는 튜플 타입으로,

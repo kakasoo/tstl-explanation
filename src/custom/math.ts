@@ -1,11 +1,5 @@
-import {
-    ArrayToUnion,
-    Length,
-    NNTuple,
-    NToNumber,
-    NTuple,
-    Push,
-} from "./utility";
+import { Push } from "./tuple";
+import { ArrayToUnion, Length, NNTuple, NToNumber, NTuple } from "./utility";
 
 export type Sub<A extends number, B extends number> = NTuple<A> extends [
     ...infer U,
