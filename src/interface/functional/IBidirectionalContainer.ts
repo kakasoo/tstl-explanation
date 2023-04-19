@@ -5,7 +5,7 @@ import {
 } from "../iterator/IReversableIterator";
 import { IPointer } from "./IPointer";
 
-export interface IBdirectionalContainer<
+export interface IBidirectionalContainer<
     IteratorT extends IReversableIterator<
         IPointer.ValueType<IteratorT>,
         IteratorT,
