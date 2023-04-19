@@ -40,3 +40,15 @@ export type IsTuple<T extends readonly any[] | { length: number }> = [
 export type Reverse<T extends any[]> = T extends [infer F, ...infer Rest]
     ? [...Reverse<Rest>, F]
     : [];
+
+/**
+ * Shift<[1,2,3]> // [2,3]
+ */
+export type Shift<T extends any[]> = T extends [infer F, ...infer Rest]
+    ? Rest
+    : [];
+
+/**
+ * Unshift<[1, 2, 3], 4> // [4,1,2,3]
+ */
+export type Unshift<T extends any[], V> = [V, ...T];
