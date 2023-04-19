@@ -23,3 +23,13 @@ export type Join<T extends string[], U extends string | number> = T extends [
         ? `${ToString<F>}`
         : `${ToString<F>}${U}${Join<ToStringTuple<Rest>, U>}`
     : "";
+
+export type IsTuple<T extends readonly any[] | { length: number }> = [
+    T
+] extends [never]
+    ? false
+    : T extends readonly any[]
+    ? number extends T["length"]
+        ? false
+        : true
+    : false;
