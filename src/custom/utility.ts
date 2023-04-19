@@ -60,3 +60,5 @@ export type NNTuple<N1 extends number, N2 extends number> = [
     : Sub<N2, 1> extends never
     ? []
     : [...NNTuple<Sub<N2, 1>, N1>, ...NTuple<N1>];
+
+export type IsNever<T> = [T] extends [never] ? true : false;
