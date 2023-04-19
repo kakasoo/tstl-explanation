@@ -33,3 +33,10 @@ export type IsTuple<T extends readonly any[] | { length: number }> = [
         ? false
         : true
     : false;
+
+/**
+ * Reverse<[1,2,3]> // [3,2,1]
+ */
+export type Reverse<T extends any[]> = T extends [infer F, ...infer Rest]
+    ? [...Reverse<Rest>, F]
+    : [];
