@@ -1,3 +1,5 @@
+import { IReverseIterator } from "../iterator/IReversableIterator";
+import { IReversableIterator } from "../iterator/IReversableIterator";
 import { IBidirectionalContainer } from "./IBidirectionalContainer";
 
 /**
@@ -20,23 +22,11 @@ export namespace IContainer {
         T,
         IteratorT extends Iterator<T, IteratorT, ReverseT>,
         ReverseT extends ReverseIterator<T, IteratorT, ReverseT>
-    > {
-        reverse(): any;
-        prev(): any;
-        next(): any;
-        equals(): any;
-        value(): any;
-    }
+    > extends Readonly<IReversableIterator<T, IteratorT, ReverseT>> {}
 
     export interface ReverseIterator<
         T,
         IteratorT extends Iterator<T, IteratorT, ReverseT>,
         ReverseT extends ReverseIterator<T, IteratorT, ReverseT>
-    > {
-        base(): any;
-        prev(): any;
-        next(): any;
-        equals(): any;
-        value(): any;
-    }
+    > extends Readonly<IReverseIterator<T, IteratorT, ReverseT>> {}
 }
