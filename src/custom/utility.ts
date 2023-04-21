@@ -62,3 +62,19 @@ export type NNTuple<N1 extends number, N2 extends number> = [
     : [...NNTuple<Sub<N2, 1>, N1>, ...NTuple<N1>];
 
 export type IsNever<T> = [T] extends [never] ? true : false;
+
+/**
+ * StartsWith<'abc', 'a'> // true
+ */
+export type StartsWith<
+    T extends string,
+    U extends string
+> = T extends `${U}${string}` ? true : false;
+
+/**
+ * EndsWith<'abc', 'c'> // true
+ */
+export type EndsWith<
+    T extends string,
+    U extends string
+> = T extends `${string}${U}` ? true : false;
