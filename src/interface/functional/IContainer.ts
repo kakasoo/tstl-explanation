@@ -1,7 +1,8 @@
 import { IReverseIterator } from "../iterator/IReversableIterator";
 import { IReversableIterator } from "../iterator/IReversableIterator";
 import { IBidirectionalContainer } from "./IBidirectionalContainer";
-
+import { IEmpty } from "../partial/IEmpty";
+import { ISize } from "../partial/ISize";
 /**
  * src/base/container/IContainer.ts
  */
@@ -10,9 +11,12 @@ export interface IContainer<
     IteratorT extends IContainer.Iterator<T, IteratorT, ReverseT>,
     ReverseT extends IContainer.ReverseIterator<T, IteratorT, ReverseT>
 > extends IBidirectionalContainer<
-        IContainer.Iterator<T, IteratorT, ReverseT>,
-        ReverseT
-    > {}
+            IContainer.Iterator<T, IteratorT, ReverseT>,
+            ReverseT
+        >,
+        Iterable<T>,
+        IEmpty,
+        ISize {}
 
 /**
  * IContainer가 가지는 내부 속성
