@@ -1,5 +1,5 @@
 import { Sub } from "./math";
-import { Length, ToString, ToStringTuple } from "./utility";
+import { Equal, Length, ToString, ToStringTuple } from "./utility";
 
 /**
  * PartitionByTwo<[1,2,3,4,5,6,7,8]> // [[1,2],[3,4],[5,6],[7,8]]
@@ -67,3 +67,26 @@ export type Push<T extends any[], V> = [...T, V];
 export type Pop<T extends any[]> = T extends [...infer Rest, infer Last]
     ? Rest
     : [];
+
+export type Includes<T extends readonly any[], U> = T extends [
+    infer P,
+    ...infer R
+]
+    ? Equal<U, P> extends true
+        ? true
+        : Includes<R, U>
+    : false;
+
+/**
+ * 튜플에서 중복 요소를 제거하는 타입
+ *
+ * Distinct<[1,1,2,2,3,3,3,4]> // [1,2,3,4]
+ */
+export type Distinct<T extends any[], P extends any[] = []> = T extends [
+    infer F,
+    ...infer Rest
+]
+    ? Includes<P, F> extends false
+        ? Distinct<Rest, [...P, F]>
+        : Distinct<Rest, P>
+    : P;
