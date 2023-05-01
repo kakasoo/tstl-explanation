@@ -16,6 +16,7 @@ export interface IContainer<
      *
      * 앞으로 구현될 자료구조들은 IContainer를 상속하여 만들어진다.
      * 이 자료구조를 A라고 할 때, 그 A의 데이터 타입 T를 추론하기 위해 만들어진다.
+     * 예컨대 HashMap이 List로 이루어져 있을 때 List의 parent type of T 는 HashMap
      */
     PElem = T
 > extends IBidirectionalContainer<
@@ -25,7 +26,20 @@ export interface IContainer<
         Iterable<T>,
         IEmpty,
         ISize,
-        IPush<PElem> {}
+        IPush<PElem> {
+    /**
+     * ES6 spec
+     */
+    [Symbol.iterator](): IterableIterator<T>;
+
+    /**
+     * Erase an element.
+     *
+     * @param pos Position To erase.
+     * @return Iterator following the *pos*, strained by the erasing.
+     */
+    erase(pos: IteratorT): IteratorT;
+}
 
 /**
  * IContainer가 가지는 내부 속성
